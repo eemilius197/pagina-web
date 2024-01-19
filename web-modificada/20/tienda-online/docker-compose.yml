@@ -1,0 +1,18 @@
+version: '3'
+services: 
+  basedatos:
+    image: mysql:8.0.35
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=emilio
+    volumes:
+      - /home/emilio/Escritorio/servicioweb/database:/var/lib/mysql
+  miservidorphp:
+    image: php:8.1-apache
+    ports:
+      - 9090:80
+    volumes:
+      - /home/emilio/Escritorio/servicioweb:/var/www/html
+    links:
+      - basedatos	 
